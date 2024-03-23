@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text">
+
+  <script>
+    const throttle = function(fn, wait) {
+      let startTime = 0
+
+      const _throttle = function(...rest) {
+        // 现在的时间
+        const nowTime = new Date().getTime()
+        const waitTime = wait - (nowTime - startTime)
+
+        if (waitTime <= 0) {
+          fn(...rest)
+          startTime = nowTime
+        }
+      }
+
+      return _throttle
+    }
+    const inputEle = document.querySelector('input')
+    inputEle.oninput = throttle(function(event) {
+      console.log(event, this.value);
+    }, 2000)    
+  </script>
+</body>
+</html>

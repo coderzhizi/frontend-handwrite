@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 需要dfs一下dom tree
+    function getElementById(rootNode, id) {
+      if (rootNode.id === id) {
+        return rootNode
+      }
+
+      rootNode.childNodes.forEach(childNode => {
+        const findElement = getElementById(childNode, id)
+        if (findElement) {
+          return findElement
+        }
+      })
+
+      return null
+    }
+  </script>
+</body>
+</html>

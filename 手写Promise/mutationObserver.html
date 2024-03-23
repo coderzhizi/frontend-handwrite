@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p>0</p>
+  <script>
+    const p = document.querySelector('p')
+    setTimeout(() => {
+      console.log(1);
+    })
+    const observer = new MutationObserver(() => { // 观测内容被观测到变化的时候执行的回调
+      console.log(2);
+    })
+
+    observer.observe(p, { // 参数一：观察对象，参数二：具体的观察行为
+        childList: true
+    })
+
+    p.innerHTML = '1'
+  </script>
+</body>
+</html>

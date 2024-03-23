@@ -1,0 +1,1 @@
+# 实现Promsie A+标准的Promise的基本功能

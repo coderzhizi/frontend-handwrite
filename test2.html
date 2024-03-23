@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input />
+
+    <script>
+      const input = document.querySelector('input')
+      input.addEventListener(
+        'input',
+        throttle(function (event) {
+          console.log(1, event, this)
+        }, 2000, {
+          immediately: false
+        })
+      )
+
+      function throttle(fn, delay, options) {
+        const { immediately = true } = options
+        let startTime = 0
+        let isInvoke = immediately
+
+        return function(...restArgs) {
+          let currentTime = (new Date()).getTime()
+          let waitTime = currentTime - startTime
+
+          if (delay <= waitTime) {
+            isInvoke && fn.apply(this, restArgs)
+            startTime = currentTime
+            isInvoke = true
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

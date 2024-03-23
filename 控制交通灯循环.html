@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Traffic Light</title>
+    <style>
+        #light {
+            width: 100px;
+            height: 100px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="light"></div>
+
+    <script>
+        function sleep(duration) {
+            return new Promise(function(resolve, reject) {
+                setTimeout(resolve, duration);
+            });
+        }
+
+        async function changeLightColor(duration, color) {
+            document.getElementById('light').style.background = color;
+            console.log('color', color);
+            await sleep(duration);
+        }
+
+        async function act() {
+            while (true) {
+                await changeLightColor(3000, 'green');
+                await changeLightColor(1000, 'yellow');
+                await changeLightColor(2000, 'red');
+            }
+        }
+
+        act();
+    </script>
+</body>
+</html>

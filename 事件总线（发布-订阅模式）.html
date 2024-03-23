@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="nav-btn">nav</div>
+  <script>
+    class EventBus {
+      constructor() {
+        this.eventMap = {}
+      }
+      
+      on(eventName, eventFn) {
+        console.log(eventFn);
+        const eventFns = this.eventMap[eventName] || []
+        if (!eventFns.length) {
+          this.eventMap[eventName] = eventFns
+          eventFns.push(eventFn)
+
+          return
+        }
+        eventFns.push(eventFn)
+      }
+
+      off(eventName, eventFn) {
+        const eventFns = this.eventMap[eventName]
+        if (!eventFns) {
+          return
+        }
+
+        eventFns.forEach((fn, index) => {
+          if (fn === eventFn) {
+            eventFns.splice(index, 1)
+          }
+        })
+
+        if (eventFns.length === 0) {
+          delete this.eventMap[eventName]
+        }
+      }
+
+      emit(eventName, ...restArgs) {
+        const eventFns = this.eventMap[eventName]
+        if (!eventFns) {
+          return
+        }
+
+        eventFns.forEach(fn => {
+          fn(...restArgs)
+        })
+      }
+    }
+    
+    const eventBus = new EventBus()
+    eventBus.on("navclick", (name, age, height) => {
+      console.log(1, name, age, height);
+    })
+    eventBus.on("navclick", () => {
+      console.log(2);
+    })
+
+    const navclick = () => console.log(3);
+    eventBus.on("navclick", navclick)
+
+    setTimeout(() => {
+      eventBus.off("navclick", navclick)
+    }, 1000)
+
+    const navBtnClick = document.querySelector(".nav-btn")
+    navBtnClick.onclick = function() {
+      console.log("监听自己");
+      eventBus.emit("navclick", "coder", 18, 1.88)
+    }
+  </script>
+</body>
+</html>

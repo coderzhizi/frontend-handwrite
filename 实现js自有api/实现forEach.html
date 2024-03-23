@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const arr = [1, 2, 3, 4]
+    
+    Array.prototype.myForEach = function(callback, thisArg) {
+      if (this === null) {
+        throw new TypeError('this is null or not defined')
+      }
+
+      if (typeof callback !== 'function') {
+        throw new TypeError(callback + 'is not a function')
+      }
+
+      const obj = Object(this)
+
+      const len = obj.length >>> 0
+
+      let k = 0
+      while (k < len) {
+        if (k)
+      }
+    }
+
+
+  </script>
+</body>
+</html>
