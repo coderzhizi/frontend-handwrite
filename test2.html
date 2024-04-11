@@ -1,40 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <input />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .light {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 1px solid #e1e2e3;
+    }
+  </style>
+</head>
+<body>
+  <div class="light"></div>
+  <script>
+    async function changeLightColor (delay, color) {
+      const ele = document.querySelector('.light').style.background = color
+      await (new Promise(resolve => setTimeout(resolve, delay)))
+    }
 
-    <script>
-      const input = document.querySelector('input')
-      input.addEventListener(
-        'input',
-        throttle(function (event) {
-          console.log(1, event, this)
-        }, 2000, {
-          immediately: false
-        })
-      )
-
-      function throttle(fn, delay, options) {
-        const { immediately = true } = options
-        let startTime = 0
-        let isInvoke = immediately
-
-        return function(...restArgs) {
-          let currentTime = (new Date()).getTime()
-          let waitTime = currentTime - startTime
-
-          if (delay <= waitTime) {
-            isInvoke && fn.apply(this, restArgs)
-            startTime = currentTime
-            isInvoke = true
-          }
-        }
+    const act = async () => {
+      while (true) {
+        await changeLightColor(4000, 'red')
+        await changeLightColor(1000, 'yellow')
+        await changeLightColor(1000, 'green')
       }
-    </script>
-  </body>
+    }
+
+    act()
+  </script>
+</body>
 </html>

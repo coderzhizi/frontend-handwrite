@@ -11,7 +11,7 @@ const sortVersion = (array) => {
 
       if (aPart !== bPart) {
         return aPart > bPart ? 1 : -1
-      }
+      }  
     }
 
     return 0

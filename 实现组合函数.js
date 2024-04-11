@@ -1,5 +1,5 @@
 function compose(functions) {
   return function(...args) {
-    return functions.reduceRight((target, fn) => fn(target), x)
+    return functions.reduceRight((target, fn) => fn(target), args)
   }
 }

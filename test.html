@@ -4,17 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <style>
-    .container > div {
-      flex: auto;
-    }
-  </style>
 </head>
 <body>
-  <div class="container" style="width: 300px; display: flex">
-    <div style="width: 150px">1</div>
-    <div>2</div>
-    <div>3</div>
-  </div>
+  <script>
+    let count = 0
+    const fn = () => {
+      let startTime = Date.now()
+
+      const executor = () => {
+        if (count === 50) {
+          return
+        }
+    
+        count++
+        console.log(Date.now() - startTime);
+        fn()
+      }
+
+      setTimeout(executor, 0)
+    }
+
+    fn()
+  </script>
 </body>
 </html>
