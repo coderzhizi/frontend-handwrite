@@ -1,25 +1,26 @@
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number}
- */
-var searchInsert = function(nums, target) {
-  let left = 0
-  let right = nums.length - 1
+const _quickSort = (array) => {
+  const qs = (array, l = 0, r = array.length - 1) => {
+    if (l >= r) {
+      return
+    }
 
-  while (left <= right) {
-      let mid = Math.floor((left + right) / 2)
-      
-      if (nums[mid] === target) {
-          return mid
-      } else if (nums[mid] < target) {
-          left++
-      } else {
-          right--
-      }
+    let i = l - 1,
+      j = r + 1,
+      mid = array[Math.floor((l + r) / 2)]
+    while (i < j) {
+      do i++
+      while (array[i] < mid)
+      do j--
+      while (array[j] > mid)
+      if (i < j) [array[i], array[j]] = [array[j], array[i]]
+    }
+
+    qs(array, l, j)
+    qs(array, j + 1, r)
   }
 
-  return left
-};
-
-console.log(searchInsert([1,3,5,6], 5))
+  qs(array, 0, array.length - 1)
+}
+const arr = [0, -1, 1, -2, 2]
+_quickSort(arr)
+console.log(arr)

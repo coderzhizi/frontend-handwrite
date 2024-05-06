@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .parent {
+        display: grid;
+        /* 水平垂直居中 */
+        /* place-items: center; */
+        /* 垂直居中 */
+        /* align-items: center; */
+        width: 400px;
+        height: 400px;
+        background-color: #1e12e3;
+      }
+
+      .child {
+        align-self: center; /* 在垂直方向上居中对齐 */
+        width: 200px;
+        height: 200px;
+        background-color: #e3e3e3;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="parent">
+      <div class="child"></div>
+    </div>
+  </body>
+</html>
