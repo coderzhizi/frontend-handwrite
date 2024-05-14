@@ -1,8 +1,8 @@
 const timeout = (time) => {
-  return new Promise(resolve => setTimeout(resolve, time))
+  return new Promise((resolve) => setTimeout(resolve, time))
 }
 
-实现这个类
+// 实现这个类
 class SuperTask {
   constructor(paralleCount = 2) {
     this.paralleCount = paralleCount
